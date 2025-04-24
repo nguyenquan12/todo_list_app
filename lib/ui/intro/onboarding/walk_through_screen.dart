@@ -28,19 +28,19 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
     walkThroughList.add(WalkThroughModelClass(
       title: 'Manage your tasks',
       subTitle:
-          'You can easily manage all of your daily\ntasks in DoMe for free',
+          'You can easily manage all of your daily tasks in DoMe for free',
       image: img_walkThrough1,
     ));
     walkThroughList.add(WalkThroughModelClass(
       title: 'Create daily routine',
       subTitle:
-          'In Uptodo  you can create your\npersonalized routine to stay productive',
+          'In Uptodo  you can create your personalized routine to stay productive',
       image: img_walkThrough2,
     ));
     walkThroughList.add(WalkThroughModelClass(
       title: 'Orgonaize your tasks',
       subTitle:
-          'You can organize your daily tasks by\nadding your tasks into separate categories',
+          'You can organize your daily tasks by adding your tasks into separate categories',
       image: img_walkThrough3,
     ));
   }
@@ -53,27 +53,12 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            // Nút "SKIP"
+            // SKIP button
             _buildSkipButton(),
             // PageView
-            _buildOnbroading(),
-            119.height,
-            // Nút tiếp tục hoặc hoàn tất
-            AppButton(
-              text: currentPage == walkThroughList.length - 1
-                  ? 'Get Started'
-                  : 'Next',
-              onTap: () {
-                if (currentPage == walkThroughList.length - 1) {
-                  setValue(IS_FIRST_TIME, false);
-                } else {
-                  _pageController.nextPage(
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                }
-              },
-            ),
+            _buildOnboarding(),
+            // NEXT and BACK button
+            _buildOnboardingNextAndBackButton(),
           ],
         ),
       ),
@@ -93,7 +78,7 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
     );
   }
 
-  Widget _buildOnbroading() {
+  Widget _buildOnboarding() {
     return Expanded(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -107,11 +92,10 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
           children: walkThroughList.map((e) {
             return Column(
               children: [
-                Image.asset(e.image.validate(),
-                    width: 271, height: 296, fit: BoxFit.contain),
+                _buildOnboardingImage(e.image.validate()),
                 Vertical_medium,
                 // Chỉ báo trang
-                _buildOnbroadingPageControl(),
+                _buildOnboardingPageControl(),
                 Vertical_medium,
                 _buildOnboardingTitleAndContent(
                     e.title.validate(), e.subTitle.validate()),
@@ -123,7 +107,16 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
     );
   }
 
-  Widget _buildOnbroadingPageControl() {
+  Widget _buildOnboardingImage(String image) {
+    return Image.asset(
+      image,
+      width: 271,
+      height: 296,
+      fit: BoxFit.contain,
+    );
+  }
+
+  Widget _buildOnboardingPageControl() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(walkThroughList.length, (index) {
@@ -158,6 +151,54 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
           textAlign: TextAlign.center,
         ),
       ],
+    );
+  }
+
+  Widget _buildOnboardingNextAndBackButton() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 24, right: 24, bottom: 74),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // BACK
+          Visibility(
+            visible: currentPage > 0, // Hiển thị hoặc ẩn nút BACK
+            child: AppButton(
+              text: 'BACK',
+              color: backgroundColor,
+              textColor: primaryTextColor.withValues(alpha: 0.44),
+              elevation: 0,
+              onTap: () {
+                if (currentPage > 0) {
+                  _pageController.previousPage(
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                }
+              },
+            ),
+          ),
+          // NEXT and GET STARTED
+          AppButton(
+            text: currentPage == walkThroughList.length - 1
+                ? 'GET STARTED'
+                : 'NEXT',
+            textColor: primaryTextColor,
+            color: primaryButtonColor,
+            onTap: () {
+              if (currentPage == walkThroughList.length - 1) {
+                setValue(IS_FIRST_TIME, false);
+                WelcomeScreen().launch(context);
+              } else {
+                _pageController.nextPage(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 }

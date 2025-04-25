@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:todo_list_app/components/widget.dart';
 import 'package:todo_list_app/extensions/colors.dart';
-import 'package:todo_list_app/ui/intro/onboarding/welcome_screen.dart';
+import 'package:todo_list_app/ui/intro/start_screen/welcome_screen.dart';
 import 'package:todo_list_app/utils/constrants.dart';
 
 class WalkThroughScreen extends StatefulWidget {
@@ -71,7 +71,7 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
       child: Text(
         'SKIP',
         style: boldTextStyle(color: primaryTextColor.withValues(alpha: 0.44)),
-      ).paddingOnly(top: 14, left: 24).onTap(() {
+      ).paddingOnly(top: 24, left: 24).onTap(() {
         setValue(IS_FIRST_TIME, false);
         WelcomeScreen().launch(context);
       }),
@@ -80,7 +80,8 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
 
   Widget _buildOnboarding() {
     return Expanded(
-      child: SizedBox(
+      child: Container(
+        padding: EdgeInsets.only(top: 40),
         width: MediaQuery.of(context).size.width,
         child: PageView(
           controller: _pageController,
@@ -156,7 +157,7 @@ class _WalkThroughScreenState extends State<WalkThroughScreen> {
 
   Widget _buildOnboardingNextAndBackButton() {
     return Padding(
-      padding: const EdgeInsets.only(left: 24, right: 24, bottom: 74),
+      padding: const EdgeInsets.only(left: 24, right: 24, bottom: 40),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

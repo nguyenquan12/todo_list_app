@@ -2,6 +2,8 @@
 const img_walkThrough1 = 'assets/images/walkThrough1.png';
 const img_walkThrough2 = 'assets/images/walkThrough2.png';
 const img_walkThrough3 = 'assets/images/walkThrough3.png';
+const img_logoGoogle = 'assets/images/logoGoogle.png';
+const img_logoApple = 'assets/images/logoApple.png';
 
 // Icons
 const ic_splash = 'assets/icons/ic_splash.png';

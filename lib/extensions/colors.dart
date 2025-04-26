@@ -3,6 +3,7 @@ import 'dart:ui';
 
 const backgroundColor = Color(0xFF121212); // Màu nền chính
 const scaffoldBackgroundColor = Color(0xFFFFFFFF); // Màu nền cho Scaffold
+const textInputColor = Color(0x979797);
 
 // Màu cho các nút
 const primaryButtonColor = Color(0xFF8685e7); // Màu chính cho nút

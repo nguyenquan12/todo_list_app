@@ -28,3 +28,10 @@ Widget BackArrowButton(BuildContext context) {
     finish(context);
   });
 }
+
+Widget MyText(String text) {
+  return Text(
+    text,
+    style: secondaryTextStyle(size: 16, color: white, fontFamily: 'Lato'),
+  );
+}

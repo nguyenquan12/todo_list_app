@@ -3,6 +3,7 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:todo_list_app/components/widget.dart';
 import 'package:todo_list_app/extensions/colors.dart';
 import 'package:todo_list_app/ui/login_register/login/login_screen.dart';
+import 'package:todo_list_app/ui/login_register/register/register_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -23,14 +24,28 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _buildWelcomeTextAndContent(),
-            Spacer(),
-            _buildWelcomeLoginButton(),
-            _buildWelcomeCreateAccountButton(),
-          ],
+        child: SingleChildScrollView(
+          child: Container(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height -
+                  MediaQuery.of(context).padding.vertical,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment:
+                  MainAxisAlignment.spaceBetween, // Replace Spacer
+              children: [
+                _buildWelcomeTextAndContent(),
+                Column(
+                  children: [
+                    _buildWelcomeLoginButton(),
+                    _buildWelcomeCreateAccountButton(),
+                    16.height,
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -95,7 +110,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           ),
           borderRadius: BorderRadius.circular(5),
         ),
-        onTap: () {},
+        onTap: () {
+          RegisterScreen().launch(context);
+        },
       ),
     );
   }

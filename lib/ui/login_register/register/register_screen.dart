@@ -3,17 +3,17 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:todo_list_app/components/my_text_form_field.dart';
 import 'package:todo_list_app/components/widget.dart';
 import 'package:todo_list_app/extensions/colors.dart';
-import 'package:todo_list_app/ui/login_register/register/register_screen.dart';
+import 'package:todo_list_app/ui/login_register/login/login_screen.dart';
 import 'package:todo_list_app/utils/constrants.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 _buildTitle(),
                 _buildTextFormField(),
-                _buildLoginOrLoginWithButton(),
+                _buildRegisterOrRegisterWithButton(),
                 _buildRichText(),
               ],
             ),
@@ -45,9 +45,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildTitle() {
     return Padding(
-      padding: const EdgeInsets.only(top: 40, bottom: 50),
+      padding: const EdgeInsets.only(top: 15, bottom: 25),
       child: Text(
-        'Login',
+        'Register',
         style: boldTextStyle(
           size: 32,
           color: whiteColor.withValues(alpha: 0.87),
@@ -65,7 +65,9 @@ class _LoginScreenState extends State<LoginScreen> {
         _buildUsernameTextFormField(),
         MyText('Password'),
         _buildPasswordTextFormField(),
-        70.height,
+        MyText('Confirm Password'),
+        _buildConfirmPasswordTextFormField(),
+        40.height,
       ],
     );
   }
@@ -90,24 +92,34 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildLoginOrLoginWithButton() {
+  Widget _buildConfirmPasswordTextFormField() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8, bottom: 25),
+      child: MyTextFormField(
+        label: '* * * * * * * * * *',
+        textFieldType: TextFieldType.PASSWORD,
+      ),
+    );
+  }
+
+  Widget _buildRegisterOrRegisterWithButton() {
     return Column(
       children: [
-        _buildLoginButton(),
+        _buildRegisterButton(),
         30.height,
         _buildDivider(),
         30.height,
-        _buildLoginWithGoogleButton(),
+        _buildRegisterWithGoogleButton(),
         Vertical_small,
-        _buildLoginWithAppleButton(),
+        _buildRegisterWithAppleButton(),
       ],
     );
   }
 
-  Widget _buildLoginButton() {
+  Widget _buildRegisterButton() {
     return AppButton(
       width: context.width() - 48,
-      text: 'Login',
+      text: 'Register',
       textStyle: secondaryTextStyle(color: white, size: 16, fontFamily: 'Lato'),
       color: primaryButtonColor,
       shapeBorder: RoundedRectangleBorder(
@@ -145,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildLoginWithGoogleButton() {
+  Widget _buildRegisterWithGoogleButton() {
     return AppButton(
       width: context.width() - 48,
       color: backgroundColor,
@@ -165,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           10.width,
           Text(
-            'Login with Google',
+            'Register with Google',
             style: secondaryTextStyle(
               size: 16,
               color: white.withValues(alpha: 0.87),
@@ -178,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildLoginWithAppleButton() {
+  Widget _buildRegisterWithAppleButton() {
     return AppButton(
       width: context.width() - 48,
       color: backgroundColor,
@@ -198,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           10.width,
           Text(
-            'Login with Google',
+            'Register with Google',
             style: secondaryTextStyle(
               size: 16,
               color: white.withValues(alpha: 0.87),
@@ -213,20 +225,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildRichText() {
     return Padding(
-      padding: const EdgeInsets.only(top: 60),
+      padding: const EdgeInsets.only(top: 30),
       child: RichText(
         text: TextSpan(children: [
           TextSpan(
-            text: 'Don’t have an account? ',
+            text: 'Already have an account? ',
             style:
                 secondaryTextStyle(size: 12, color: grey, fontFamily: 'Lato'),
           ),
           WidgetSpan(
             child: Text(
-              'Register',
+              'Login',
               style: boldTextStyle(size: 12, color: white, fontFamily: 'Lato'),
             ).onTap(() {
-              RegisterScreen().launch(context);
+              LoginScreen().launch(context);
             }),
           ),
         ]),

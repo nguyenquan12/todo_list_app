@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:todo_list_app/components/widget.dart';
@@ -35,11 +36,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               mainAxisAlignment:
                   MainAxisAlignment.spaceBetween, // Replace Spacer
               children: [
-                _buildWelcomeTextAndContent(),
+                _buildTitleAndDesc(),
                 Column(
                   children: [
-                    _buildWelcomeLoginButton(),
-                    _buildWelcomeCreateAccountButton(),
+                    _buildButtonChangeLanguage(context),
+                    _buildLoginButton(),
+                    _buildCreateAccountButton(),
                     16.height,
                   ],
                 ),
@@ -51,12 +53,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
-  Widget _buildWelcomeTextAndContent() {
+  Widget _buildTitleAndDesc() {
     return Column(
       children: [
         Vertical_large,
         Text(
-          'Welcome UpTodo',
+          "welcome_title".tr(),
           style: boldTextStyle(
             size: 32,
             color: whiteColor.withValues(alpha: 0.87),
@@ -68,7 +70,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 44),
           child: Text(
-            'Please login to your account or create new account to continue',
+            "welcome_desc".tr(),
             style: boldTextStyle(
               size: 16,
               color: whiteColor.withValues(alpha: 0.67),
@@ -80,22 +82,48 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
-  Widget _buildWelcomeLoginButton() {
+  Widget _buildButtonChangeLanguage(BuildContext context) {
     return AppButton(
       width: context.width() - 48,
-      text: 'LOGIN',
+      text: 'Change Language',
       textStyle: boldTextStyle(size: 16, color: whiteColor),
       color: primaryButtonColor,
       shapeBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),
       onTap: () {
-        LoginScreen().launch(context);
+        // Lấy ra locale hiện tại
+        final currentLocale = context.locale.toString();
+        if (currentLocale == 'en') {
+          // Nếu locale hiện tại là tiếng Anh, chuyển sang tiếng Việt
+          context.setLocale(Locale('vi'));
+        } else {
+          // Ngược lại, chuyển sang tiếng Anh
+          context.setLocale(Locale('en'));
+        }
       },
     );
   }
 
-  Widget _buildWelcomeCreateAccountButton() {
+  Widget _buildLoginButton() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 28),
+      child: AppButton(
+        width: context.width() - 48,
+        text: 'LOGIN',
+        textStyle: boldTextStyle(size: 16, color: whiteColor),
+        color: primaryButtonColor,
+        shapeBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        onTap: () {
+          LoginScreen().launch(context);
+        },
+      ),
+    );
+  }
+
+  Widget _buildCreateAccountButton() {
     return Padding(
       padding: const EdgeInsets.only(top: 28, bottom: 67),
       child: AppButton(

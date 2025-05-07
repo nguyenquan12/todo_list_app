@@ -4,11 +4,16 @@ const img_walkThrough2 = 'assets/images/walkThrough2.png';
 const img_walkThrough3 = 'assets/images/walkThrough3.png';
 const img_logoGoogle = 'assets/images/logoGoogle.png';
 const img_logoApple = 'assets/images/logoApple.png';
+const img_avatar = 'assets/images/avatar.png';
 
 // Icons
 const ic_splash = 'assets/icons/ic_splash.png';
 const ic_splash2x = 'assets/icons/2.0x/ic_splash@2x.png';
 const ic_splash3x = 'assets/icons/3.0x/ic_splash@3x.png';
+const ic_calendar = 'assets/icons/calendar.png';
+const ic_clock = 'assets/icons/clock.png';
+const ic_home = 'assets/icons/home.png';
+const ic_user = 'assets/icons/user.png';
 
 // Gifs
 const gif_loader = 'assets/icons/gifs/gif_loader.gif';

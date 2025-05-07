@@ -3,6 +3,7 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:todo_list_app/components/my_text_form_field.dart';
 import 'package:todo_list_app/components/widget.dart';
 import 'package:todo_list_app/extensions/colors.dart';
+import 'package:todo_list_app/ui/home/home_page.dart';
 import 'package:todo_list_app/ui/login_register/register/register_screen.dart';
 import 'package:todo_list_app/utils/constrants.dart';
 
@@ -113,7 +114,9 @@ class _LoginScreenState extends State<LoginScreen> {
       shapeBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),
-      onTap: () {},
+      onTap: () {
+        HomePage().launch(context);
+      },
     );
   }
 

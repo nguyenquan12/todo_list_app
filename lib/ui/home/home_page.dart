@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:todo_list_app/extensions/colors.dart';
+import 'package:todo_list_app/ui/category/create_or_edit_category.dart';
 import 'package:todo_list_app/utils/constrants.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
     _pages = [
       Container(
-        color: greenColor,
+        color: blueColor,
       ),
       Container(
         color: redColor,
@@ -78,7 +79,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _pages[_currentIndex],
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          CreateOrEditCategory().launch(context);
+        },
         backgroundColor: primaryButtonColor,
         elevation: 2,
         shape: RoundedRectangleBorder(

@@ -57,7 +57,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
           padding: EdgeInsets.symmetric(horizontal: 8),
           decoration: BoxDecoration(
             border: Border.all(color: grey),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(6),
           ),
           child: AppTextField(
             keyboardType: widget.keyboardType ?? TextInputType.name,
@@ -72,7 +72,8 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
             textFieldType: widget.textFieldType,
             // Xác định hành động của phím "Enter" trên bàn phím ảo.
             textInputAction: widget.textInputAction ?? TextInputAction.next,
-            textStyle: boldTextStyle(),
+            textStyle: secondaryTextStyle(
+                color: Color(0xFFAFAFAF), size: 16, fontFamily: 'Lato'),
             onChanged: (value) {
               checkText = value; // Cập nhật biến kiểm tra khi có thay đổi
               setState(() {});
@@ -84,10 +85,8 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: widget.label,
-              hintStyle: boldTextStyle(
-                  color: grey.withValues(alpha: 0.6),
-                  size: 16,
-                  fontFamily: 'Lato'),
+              hintStyle: secondaryTextStyle(
+                  color: Color(0xFFAFAFAF), size: 16, fontFamily: 'Lato'),
             ),
           ),
         )
